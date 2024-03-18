@@ -8,7 +8,7 @@ const Dashboard = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-2 " style={{ backgroundColor: '#3F000F', width: '250px', height: '100vh' }}>
+                <div className="col-md-2 " style={{ backgroundColor: '#3F000F', width: '230px', height: '100vh' }}>
                     <DashNav></DashNav>
                 </div>
                 <div className="col-md-9 text-center mt-5 p-5 ">

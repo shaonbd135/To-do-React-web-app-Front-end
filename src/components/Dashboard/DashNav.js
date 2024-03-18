@@ -39,12 +39,12 @@ const DashNav = () => {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/create-task" style={FontStyle}>
+                        <Link className="nav-link text-white" to="/dashboard/my-tasks" style={FontStyle}>
                             <p  > <i class="bi bi-card-list" style={iconStyle}></i>My Task</p>
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/create-project" style={FontStyle}>
+                        <Link className="nav-link text-white" to="/dashboard/create-task" style={FontStyle}>
                             <p > <i class="bi bi-plus-circle" style={iconStyle}></i>Create New Task</p>
                         </Link>
                     </li>

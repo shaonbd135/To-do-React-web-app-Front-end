@@ -1,0 +1,28 @@
+.table-container {
+    margin: 20px; /* Add some margin around the table */
+}
+
+.table {
+    width: 100%; /* Make the table fill the container */
+    border-collapse: collapse; /* Collapse the borders between table cells */
+}
+
+.table th, .table td {
+    padding: 10px; /* Add padding to table cells */
+    border-bottom: 1px solid #e6dee2; /* Add a bottom border to table rows */
+}
+
+.table th {
+    background-color: #343a40; /* Dark background color for table headers */
+    color: #ffffff; /* White text color for table headers */
+}
+
+/* Adjust the background color for even and odd table rows */
+.table tbody tr:nth-child(even) {
+    background-color: #c2742b !important; /* Alternate background color for even table rows */
+}
+
+/* Highlight table row on hover */
+.table tbody tr:hover {
+    background-color: #0a3663 !important; /* Highlight table row on hover */
+}

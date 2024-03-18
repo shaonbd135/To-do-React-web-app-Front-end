@@ -14,6 +14,7 @@ const PrivateRoute = ({ children }) => {
         const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
+            return;
         }
 
         axios.get('http://localhost:5000/profile', {
@@ -30,6 +31,7 @@ const PrivateRoute = ({ children }) => {
             })
             .catch((err) => {
                 navigate('/login');
+                
             })
     }, [])
 

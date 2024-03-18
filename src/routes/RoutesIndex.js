@@ -7,6 +7,9 @@ import Error from '../components/Error/Error';
 import Dashboard from '../components/Dashboard/Dashboard';
 import AboutUs from './../components/AboutUs/AboutUs';
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
+import CreateTask from '../components/Dashboard/CreateTask';
+import MyTask from '../components/Dashboard/MyTask';
+import Modal from './../components/Dashboard/modal';
 
 export const UserContext = createContext();
 export const ProfileContext = createContext();
@@ -21,8 +24,12 @@ const RoutesIndex = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/modal' element={<Modal />} />
                         <Route path='login' element={<Login />} />
                         <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+                        <Route path='/dashboard/create-task' element={<PrivateRoute><CreateTask /></PrivateRoute>} />
+                        <Route path='/dashboard/my-tasks' element={<PrivateRoute><MyTask /></PrivateRoute>} />
+
                         <Route path="*" element={<Error />} />
                     </Routes>
                 </BrowserRouter>
