@@ -9,7 +9,7 @@ import AboutUs from './../components/AboutUs/AboutUs';
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 import CreateTask from '../components/Dashboard/CreateTask';
 import MyTask from '../components/Dashboard/MyTask';
-import Modal from './../components/Dashboard/modal';
+
 
 export const UserContext = createContext();
 export const ProfileContext = createContext();
@@ -23,8 +23,7 @@ const RoutesIndex = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about-us" element={<AboutUs />} />
-                        <Route path='/register' element={<Register />} />
-                        <Route path='/modal' element={<Modal />} />
+                        <Route path='/register' element={<Register />} />                       
                         <Route path='login' element={<Login />} />
                         <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
                         <Route path='/dashboard/create-task' element={<PrivateRoute><CreateTask /></PrivateRoute>} />

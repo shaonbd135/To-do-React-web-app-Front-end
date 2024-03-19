@@ -69,11 +69,11 @@ const CreateTask = () => {
                 </div>
 
                 <div className="col-md-10">
-                    <h3 className='mt-5 mb-5 text-center p-3' style={{ color: 'green', fontSize: '30px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>Create Your Daily Task {user.name} </h3>
+                    <h5 className='mt-5 mb-5 text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>Create Your Daily Task {user.name} </h5>
                     <div className="row">
                         <div className="col-md-5 mt-5  p-5 m-auto ">
                             <div className="mb-3 text-center" style={{ fontSize: '20px', backgroundColor: 'white', boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)', padding: '10px' }}>
-                                <h5>Today is - <span style={{ color: 'green', fontWeight: 'bold' }}>{today}</span></h5>
+                                <h5> <i class="bi bi-calendar" style={{ color: 'black', fontSize: '15px', marginRight: '10px' }}></i>Today is - <span style={{ color: 'green', fontWeight: 'bold' }}>{today}</span></h5>
                             </div>
                             <div className="mb-3 text-center d-flex justify-content-center">
                                 <Calendar onChange={setSelectedDate} value={selectedDate} />
@@ -99,7 +99,7 @@ const CreateTask = () => {
                                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
                                         <input type="date" name='deadline' class="form-control" required id="exampleFormControlInput1" onChange={handleDateChange} />
                                     </div>
-                                    <button type='submit' className='btn btn-success mt-3'>Submit</button>
+                                    <button type='submit' className='btn btn-success mt-3'> <i class="bi bi-plus-circle" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Add Task</button>
 
                                 </form>
 

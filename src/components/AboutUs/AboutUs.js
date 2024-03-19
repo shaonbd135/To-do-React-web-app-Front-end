@@ -7,7 +7,7 @@ const AboutUs = () => {
         <div>
             <NavBar></NavBar>
             <h1>This is about us page</h1>
-            <Footer></Footer>
+            
         </div>
     );
 };

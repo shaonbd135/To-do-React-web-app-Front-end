@@ -17,9 +17,7 @@ const Dashboard = () => {
 
                 </div>
             </div>
-            <div className="row">
-                <Footer></Footer>
-            </div>
+            
 
         </div>
     );

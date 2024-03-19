@@ -4,18 +4,20 @@ import { ProfileContext } from '../../routes/RoutesIndex';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './MyTask.css';
+import MyModal from './modal';
 
 
 const MyTask = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useContext(ProfileContext);
-    const [taskList, setTaskList] = useState([]);
-    const [CompletedTasks, setCompletedTasks] = useState([]);
-    const [updateSuccess, setUpdateSuccess] = useState('');
-    const [error, setError] = useState('');
-    const [deleteSuccess, setDeleteSuccess] = useState('');
+    const [taskList, setTaskList] = useState([]); // For Todo Tasks
+    const [CompletedTasks, setCompletedTasks] = useState([]); // For Completed Tasks
+    const [updateSuccess, setUpdateSuccess] = useState(''); // For Update Success
+    const [error, setError] = useState(''); // For Error
+    const [deleteSuccess, setDeleteSuccess] = useState(''); // For Delete
 
+    // Get All Tasks From Server for Display........
     useEffect(() => {
         const token = localStorage.getItem('token');
 
@@ -53,6 +55,7 @@ const MyTask = () => {
 
     }, [navigate, updateSuccess, deleteSuccess]);
 
+    // Delete Task........
     const handleDelete = (taskId) => {
         const token = localStorage.getItem('token');
         axios.delete(`http://localhost:5000/delete-task/${taskId}`, {
@@ -76,6 +79,7 @@ const MyTask = () => {
             });
     }
 
+    // Update Task Status For Completed...
     const handleComplete = (taskId) => {
         const token = localStorage.getItem('token');
         axios.patch('http://localhost:5000/update-task', {
@@ -91,18 +95,39 @@ const MyTask = () => {
                     setUpdateSuccess(res.data.message);
                     setTimeout(() => {
                         setUpdateSuccess('');
-                    }, 7000);
+                    }, 5000);
                 }
             })
             .catch((err) => {
                 setError(err.response.data.message);
                 setTimeout(() => {
                     setError('');
-                }, 7000);
+                }, 5000);
             });
     }
 
+    // Modal For Edit Task
+    const [open, setOpen] = useState(false);
 
+    const onOpenModal = () => setOpen(true);
+    const onCloseModal = () => setOpen(false);
+
+    // Send data to Modal For Edit 
+    const [editData, setEditData] = useState({});
+
+
+    const handleEdit = (data) => {
+        setEditData(data);
+        onOpenModal();
+    }
+
+    // Update Success Message For Edit Task From Modal
+    const successUpdate = (message) => {
+        setUpdateSuccess(message);
+        setTimeout(() => {
+            setUpdateSuccess('');
+        }, 5000);
+    }
 
 
     return (
@@ -112,7 +137,9 @@ const MyTask = () => {
                     <DashNav></DashNav>
                 </div>
                 <div className="col-md-9 text-center mt-3 p-5 m-auto" >
-                    <h4 style={{ color: 'green' }}>My Tasks</h4>
+                    <h5 className=' mb-5 text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>My Task List </h5>
+
+                    {/* Show the success message or error message  */}
 
                     <div className="table-container" style={{ marginBottom: '100px' }}>
                         <div className="mb-3 text-center">
@@ -133,6 +160,12 @@ const MyTask = () => {
                             )}
 
                         </div>
+
+                        {/* Table for My Task */}
+                        <div className="mb-3 text-center p-2" style={{ backgroundColor: '#3F000F' }}>
+                            <h4 style={{ color: 'white' }}> <i class="bi bi-card-list" style={{ color: 'white', fontSize: '25px', marginRight: '10px' }}></i>To Do Tasks</h4>
+                        </div>
+
                         <table className="table text-center table-bordered">
                             <thead className="thead-dark">
                                 <tr>
@@ -155,10 +188,11 @@ const MyTask = () => {
                                         <td>{new Date(task.dueDate).toDateString()}</td>
                                         <td>
                                             {/* Button to mark task as done */}
-                                            <button className='btn btn-success m-2 ' onClick={() => handleComplete(task._id)} >Mark as Done</button>
-                                            <button className='btn btn-primary m-2' >Edit</button>
+                                            <button className='btn btn-success m-2 ' onClick={() => handleComplete(task._id)} > <i class="bi bi-check2-all" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Mark as Done</button>
+                                            {/* Button to edit task */}
+                                            <button className='btn btn-primary m-2' onClick={() => handleEdit(task)}  > <i class="bi bi-pencil-square" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Edit</button>
                                             {/* Button to delete task */}
-                                            <button className='btn btn-danger'  >Delete</button>
+                                            <button className='btn btn-danger' onClick={() => handleDelete(task._id)}  ><i class="bi bi-trash" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Delete</button>
 
                                         </td>
                                     </tr>
@@ -166,6 +200,12 @@ const MyTask = () => {
                             </tbody>
                         </table>
 
+                        {/* //modal for edit task (Popup) */}
+                        <div>
+                            <MyModal open={open} onCloseModal={onCloseModal} editData={editData} successUpdate={successUpdate} />
+                        </div>
+
+                        {/* If no tasks found for the user (Due Task) */}
                         <div>
                             {
                                 taskList.length === 0 && (
@@ -179,12 +219,11 @@ const MyTask = () => {
                         <hr style={{ backgroundColor: '#3F000F' }} />
                     </div>
 
-                    {/*For  Completed Tasks */}
-
+                    {/*Table For Completed Tasks */}
 
                     <div className="table-container" style={{ marginTop: '50px' }}>
                         <div className="mb-3 text-center p-2" style={{ backgroundColor: '#3F000F' }}>
-                            <h4 style={{ color: 'white' }}>Completed Tasks</h4>
+                            <h4 style={{ color: 'white' }}> <i class="bi bi-check2-all" style={{ color: 'white', fontSize: '25px', marginRight: '10px' }}></i>Completed Tasks</h4>
                         </div>
                         <table className="table text-center table-bordered">
                             <thead className="thead-dark">
@@ -194,7 +233,7 @@ const MyTask = () => {
                                     <th scope="col">Description</th>
                                     <th scope="col">Created Date</th>
                                     <th scope="col">Due Date</th>
-                                    <th scope="col">Actions</th> {/* Add a new column for actions */}
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -208,13 +247,14 @@ const MyTask = () => {
                                         <td>{new Date(task.dueDate).toDateString()}</td>
                                         <td>
                                             {/* Button to delete task */}
-                                            <button className='btn btn-danger' onClick={() => handleDelete(task._id)} >Delete</button>
+                                            <button className='btn btn-danger' onClick={() => handleDelete(task._id)} > <i class="bi bi-trash" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Delete</button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                         <div>
+                            {/* If no tasks found for the user (Completed Tasks) */}
                             {
                                 CompletedTasks.length === 0 && (
                                     <h4>No tasks found</h4>
@@ -223,9 +263,6 @@ const MyTask = () => {
                         </div>
 
                     </div>
-
-
-
                 </div>
             </div>
 
