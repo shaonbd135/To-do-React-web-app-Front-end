@@ -133,11 +133,11 @@ const MyTask = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-2 " style={{ backgroundColor: '#3F000F', width: '230px', height: '100vh' }}>
+                <div className="col-auto " >
                     <DashNav></DashNav>
                 </div>
-                <div className="col-md-9 text-center mt-3 p-5 m-auto" >
-                    <h5 className=' mb-5 text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>My Task List </h5>
+                <div className="col-md-10 text-center mt-2   mx-auto m-auto" >
+                    <h5 className=' mb-5 text-center  text-muted p-3' style={{  fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>My Task List </h5>
 
                     {/* Show the success message or error message  */}
 
@@ -162,7 +162,7 @@ const MyTask = () => {
                         </div>
 
                         {/* Table for My Task */}
-                        <div className="mb-3 text-center p-2" style={{ backgroundColor: '#3F000F' }}>
+                        <div className="mb-3 text-center p-2 " style={{ backgroundColor: '#3F000F' }}>
                             <h4 style={{ color: 'white' }}> <i class="bi bi-card-list" style={{ color: 'white', fontSize: '25px', marginRight: '10px' }}></i>To Do Tasks</h4>
                         </div>
 

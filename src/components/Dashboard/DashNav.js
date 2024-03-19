@@ -6,15 +6,10 @@ import { ProfileContext } from '../../routes/RoutesIndex';
 const DashNav = () => {
     const [user, setUser] = useContext(ProfileContext);
     const navigate = useNavigate();
-    const FontStyle = {
-        color: 'white',
-        fontSize: '15px',
-        textDecoration: 'none',
-    }
+   
     const iconStyle = {
-        color: 'white',
-        fontSize: '20px',
-        marginRight: '10px',
+        color: '#3F000F',
+
     }
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -22,53 +17,63 @@ const DashNav = () => {
         navigate('/login');
     }
     return (
-        <div className="container-fluid ">
-            <div className='mt-3 text-center p-2 bg-white rounded' style={{ borderBottom: '2px solid white' }} >
-                <img style={{ width: '50px' }} src={logo} alt="" />
-                <h4 style={{ color: 'black' }}>Saidur's To Do</h4>
-            </div>
-            <div className='mt-3  p-2 text-center' style={{ borderBottom: '2px solid white' }} >
-                <h5 style={{ color: 'white' }}><i class="bi bi-person-circle" style={iconStyle}></i> {user.name}</h5>
-                <p style={{ color: 'white', marginTop: '20px' }}>  <i class="bi bi-calendar2" style={iconStyle}></i>{new Date().toDateString()}</p>
-            </div>
-            <div style={{ backgroundColor: '#3F000F', marginTop: '20px' }}>
-                <ul className='nav flex-column '>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/dashboard" style={FontStyle}>
-                            <p> <i class="bi bi-card-text" style={iconStyle}></i> Dashboard</p>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/dashboard/my-tasks" style={FontStyle}>
-                            <p  > <i class="bi bi-card-list" style={iconStyle}></i>My Task</p>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/dashboard/create-task" style={FontStyle}>
-                            <p > <i class="bi bi-plus-circle" style={iconStyle}></i>Create New Task</p>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/create-project" style={FontStyle}>
-                            <p > <i class="bi bi-gear" style={iconStyle}></i>Setting</p>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <div className="nav-link text-white" style={FontStyle}>
-                            <p style={{ cursor: 'pointer' }} onClick={handleLogout} > <i class="bi bi-box-arrow-right" style={iconStyle}></i>Logout</p>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link text-white" style={{ color: 'white', textDecoration: 'none', marginTop: '100px' }}>
-                            <p > <i class="bi bi-house" style={{ color: 'white', fontSize: '20px', marginRight: '10px', }} ></i>Back To Home</p>
-                        </Link>
-                    </li>
+        <div class="container-fluid " >
+            <div class="row">
+                <div class="col-sm-auto ">
+                    <div class="d-flex flex-sm-column flex-row flex-nowrap  mx-auto align-items-center " >
 
-                </ul>
+                        <Link to='/'><img class="navbar-brand mt-2" src={logo} alt="" style={{ width: '50px', height: '50px' }} /></Link>
+
+                        <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto  text-center align-items-center">
+                            <li class="nav-item">
+                                <Link to="/Dashboard" class="nav-link ">
+                                    <i style={iconStyle} class="bi-house fs-1"></i>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/Dashboard/create-task" class="nav-link py-3 " >
+                                    <i style={iconStyle} class="bi bi-plus-circle fs-1"></i>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/my-tasks" class="nav-link py-3 " >
+                                    <i style={iconStyle} class="bi bi-card-list fs-1"></i>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link class="nav-link py-3 "  to={"/dashboard/settings"} >
+                                    <i style={iconStyle} class="bi bi-gear fs-1"> </i>
+                                </Link>
+                            </li>
+                            
+                        </ul>
+                        <div class="dropdown">
+                            <Link class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i style={iconStyle} class="bi-person-circle h2"></i>
+                            </Link>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                                <li><Link to="/dashboard/profile" class="dropdown-item" >Profile</Link></li>
+                                <li><p style={{ cursor: 'pointer' }} class="dropdown-item" onClick={handleLogout}  >Logout</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
+
     );
 };
 
 export default DashNav;
+
+
+
+
+
+
+
+
+
+
+

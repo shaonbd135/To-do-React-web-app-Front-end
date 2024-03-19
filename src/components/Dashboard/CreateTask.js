@@ -64,12 +64,11 @@ const CreateTask = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-2 " style={{ backgroundColor: '#3F000F', width: '230px', height: '100vh' }}>
+                <div className="col-auto  ">
                     <DashNav></DashNav>
                 </div>
-
-                <div className="col-md-10">
-                    <h5 className='mt-5 mb-5 text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>Create Your Daily Task {user.name} </h5>
+                <div className="col-md-10  mx-auto m-auto">
+                    <h5 className=' text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>Create Your Daily Task {user.name} </h5>
                     <div className="row">
                         <div className="col-md-5 mt-5  p-5 m-auto ">
                             <div className="mb-3 text-center" style={{ fontSize: '20px', backgroundColor: 'white', boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)', padding: '10px' }}>
@@ -81,7 +80,10 @@ const CreateTask = () => {
                             </div>
                         </div>
                         <div className="col-md-5 rounded " style={{ boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)' }}>
-                            <div className="mt-5 p-5 m-auto" >
+                            <div className=" text-center text-muted mt-3">
+                                <h5 style={{ borderBottom: '1px solid lightgray', padding: '10px' }}>Create Your Task</h5>
+                            </div>
+                            <div className=" p-5 m-auto" >
                                 <form action="/create-task" method="post" onSubmit={handleSubmit}  >
                                     <div className='mb-3 text-center  '>
                                         {success && <p className='alert alert-success '>{success}</p>}

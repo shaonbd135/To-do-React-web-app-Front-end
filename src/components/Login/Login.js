@@ -56,10 +56,10 @@ const Login = () => {
 
 
     return (
-        <div className='container-fluid '>
+        <div className='container-fluid  ' style={{ height: '100vh' }}>
             <NavBar></NavBar>
 
-            <div className='row ' >
+            <div className='row '  >
 
                 <div className='col-md-6 mx-auto  p-5 rounded ' style={{ boxShadow: '0 4px 8px 0 lightblue', marginTop: '100px', width: '500px' }}>
                     <div className='text-center'>
@@ -85,7 +85,7 @@ const Login = () => {
 
                         </div>
                         <div className='text-center mt-3'>
-                            <p>Don't have an account?</p> <Link style={{ color: '#0D6EFD', textDecoration: 'none' }} to="/login"><h5 >Register</h5></Link>
+                            <p>Don't have an account?</p> <Link style={{ color: '#0D6EFD', textDecoration: 'none' }} to="/register"><h5 >Register</h5></Link>
                         </div>
 
 

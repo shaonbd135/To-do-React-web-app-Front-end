@@ -52,7 +52,7 @@ const Register = () => {
             })
     }
     return (
-        <div className='container-fluid '>
+        <div className='container-fluid ' style={{ height: '100vh' }}>
             <NavBar></NavBar>
 
             <div className='row ' >

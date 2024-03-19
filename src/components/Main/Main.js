@@ -14,7 +14,7 @@ const Main = () => {
                             <Link to='/register'><button className='btn mt-3' style={{ backgroundColor: '#0D6EFD', color: 'white', width: '200px' }}>Get Started</button></Link>
                         </div>
                         <div style={{ marginRight: '15px' }}>
-                            <Link to='/login'><button className='btn mt-3' style={{ backgroundColor: 'green', color: 'white', width: '200px' }}>Login</button></Link>
+                            <Link to='/login'><button className='btn mt-3 bg-success' style={{  color: 'white', width: '200px' }}>Login</button></Link>
                         </div>
                     </div>
                 </div>
