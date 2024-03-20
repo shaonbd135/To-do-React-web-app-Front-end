@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import NavBar from './../NavBar/NavBar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../routes/RoutesIndex';
 import axios from 'axios';
 
@@ -11,6 +11,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
+    const location = useLocation();
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -49,7 +51,6 @@ const Login = () => {
                 }
             })
             .catch((err) => {
-
                 setError(err.response.data.message);
             })
     }
@@ -57,7 +58,7 @@ const Login = () => {
 
     return (
         <div className='container-fluid  ' style={{ height: '100vh' }}>
-            <NavBar></NavBar>
+
 
             <div className='row '  >
 

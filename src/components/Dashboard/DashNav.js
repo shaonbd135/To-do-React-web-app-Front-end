@@ -17,14 +17,14 @@ const DashNav = () => {
         navigate('/login');
     }
     return (
-        <div class="container-fluid " >
+        <div class="container-fluid  " >
             <div class="row">
-                <div class="col-sm-auto ">
-                    <div class="d-flex flex-sm-column flex-row flex-nowrap  mx-auto align-items-center " >
+                <div class="col-sm-auto">
+                    <div class="d-flex flex-sm-column flex-row flex-nowrap justify-content-center  mx-auto align-items-center " >
 
                         <Link to='/'><img class="navbar-brand mt-2" src={logo} alt="" style={{ width: '50px', height: '50px' }} /></Link>
 
-                        <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto  text-center align-items-center">
+                        <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto flex-row  text-center align-items-center">
                             <li class="nav-item">
                                 <Link to="/Dashboard" class="nav-link ">
                                     <i style={iconStyle} class="bi-house fs-1"></i>

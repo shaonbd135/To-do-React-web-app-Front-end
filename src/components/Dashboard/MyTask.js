@@ -136,7 +136,7 @@ const MyTask = () => {
                 <div className="col-auto " >
                     <DashNav></DashNav>
                 </div>
-                <div className="col-md-10 text-center mt-2   mx-auto m-auto" >
+                <div className="col-md-10 col-sm-9 text-center mt-2   mx-auto m-auto" >
                     <h5 className=' mb-5 text-center  text-muted p-3' style={{  fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>My Task List </h5>
 
                     {/* Show the success message or error message  */}

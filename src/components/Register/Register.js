@@ -53,7 +53,7 @@ const Register = () => {
     }
     return (
         <div className='container-fluid ' style={{ height: '100vh' }}>
-            <NavBar></NavBar>
+            
 
             <div className='row ' >
                 <div className='col-md-6 mx-auto  p-5 rounded ' style={{ boxShadow: '0 4px 8px 0 lightblue', marginTop: '100px', width: '500px' }}>

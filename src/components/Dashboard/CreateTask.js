@@ -64,10 +64,10 @@ const CreateTask = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-auto  ">
+                <div className="col-auto ">
                     <DashNav></DashNav>
                 </div>
-                <div className="col-md-10  mx-auto m-auto">
+                <div className="col-md-10 col-sm-9  mx-auto m-auto">
                     <h5 className=' text-center p-3 text-muted' style={{ color: 'green', fontSize: '25px', marginBottom: '30px', borderBottom: '2px solid lightgray', }}>Create Your Daily Task {user.name} </h5>
                     <div className="row">
                         <div className="col-md-5 mt-5  p-5 m-auto ">

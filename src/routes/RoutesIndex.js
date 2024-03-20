@@ -11,6 +11,7 @@ import CreateTask from '../components/Dashboard/CreateTask';
 import MyTask from '../components/Dashboard/MyTask';
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
+import Profile from '../components/Dashboard/Profile';
 
 
 export const UserContext = createContext();
@@ -28,9 +29,10 @@ const RoutesIndex = () => {
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='login' element={<Login />} />
-                        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-                        <Route path='/dashboard/create-task' element={<PrivateRoute><CreateTask /></PrivateRoute>} />
-                        <Route path='/dashboard/my-tasks' element={<PrivateRoute><MyTask /></PrivateRoute>} />
+                        <Route path='/dashboard' element={<PrivateRoute children={<Dashboard />}></PrivateRoute>} />
+                        <Route path='/dashboard/create-task' element={<PrivateRoute children={<CreateTask />}></PrivateRoute>} />
+                        <Route path='/dashboard/my-tasks' element={<PrivateRoute children={<MyTask />}></PrivateRoute>} />
+                        <Route path='/dashboard/profile' element={<PrivateRoute children={<Profile />}></PrivateRoute>} />
 
                         <Route path="*" element={<Error />} />
                     </Routes>
