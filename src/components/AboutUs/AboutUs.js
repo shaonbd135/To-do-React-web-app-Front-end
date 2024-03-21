@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './../NavBar/NavBar';
 import Footer from './../Footer/Footer';
-import group2 from '../../images/group2.jpg'
+import group3 from '../../images/group3.jpg'
 import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
@@ -34,7 +34,7 @@ const AboutUs = () => {
 
                 </div>
                 <div className="col-md-6 col-sm-12 mt-5 p-3">
-                    <img src={group2} alt="" style={{ width: '100%'}} />
+                    <img src={group3} alt="" style={{ width: '100%'}} />
 
                 </div>
             </div>
