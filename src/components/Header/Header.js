@@ -5,7 +5,7 @@ import Features from '../Features/Features';
 
 const Header = () => {
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid mb-5'>
             {/* <NavBar></NavBar> */}
             <div style={{ backgroundColor: 'lightgray' }}>
                 <Main></Main>

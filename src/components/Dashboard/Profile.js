@@ -40,7 +40,7 @@ const Profile = () => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         axios.patch('http://localhost:5000/update-profile', {
-            id: user._id,
+            id: user.id,
             currentUsername: user.username,
             newUsername: editedUser.newUsername,
             name: editedUser.name
@@ -68,6 +68,7 @@ const Profile = () => {
                 }, 4000);
             })
     }
+    
 
     const handlePasswordSubmit = (e) => {
 

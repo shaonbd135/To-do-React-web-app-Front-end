@@ -39,12 +39,7 @@ const DashNav = () => {
                                 <Link to="/dashboard/my-tasks" class="nav-link py-3 " >
                                     <i style={iconStyle} class="bi bi-card-list fs-1"></i>
                                 </Link>
-                            </li>
-                            <li>
-                                <Link class="nav-link py-3 "  to={"/dashboard/settings"} >
-                                    <i style={iconStyle} class="bi bi-gear fs-1"> </i>
-                                </Link>
-                            </li>
+                            </li>                           
                             
                         </ul>
                         <div class="dropdown">
