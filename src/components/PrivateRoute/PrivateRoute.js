@@ -19,7 +19,7 @@ const PrivateRoute = ({ children }) => {
             return;
         }
 
-        axios.get('http://localhost:5000/profile', {
+        axios.get('https://to-do-react-web-app-back-end-server.onrender.com/profile', {
             headers: {
                 Authorization: token
             }

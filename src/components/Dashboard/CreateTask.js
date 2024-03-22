@@ -5,6 +5,8 @@ import 'react-calendar/dist/Calendar.css';
 import { ProfileContext } from '../../routes/RoutesIndex';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const CreateTask = () => {
@@ -32,7 +34,7 @@ const CreateTask = () => {
         }
 
         e.preventDefault();
-        axios.post('http://localhost:5000/create-task', {
+        axios.post('https://to-do-react-web-app-back-end-server.onrender.com/create-task', {
             username: user.username,
             taskName: task.title,
             description: task.description,
@@ -45,6 +47,10 @@ const CreateTask = () => {
             .then((res) => {
                 if (res.data.success === true) {
                     setSuccess(res.data.message);
+                    toast.success(res.data.message, {
+                        position: "bottom-right",
+                      })
+                
                     setTimeout(() => { // Set timeout for success message
                         setSuccess('');
                     }, 10000); // 10 seconds
@@ -52,6 +58,9 @@ const CreateTask = () => {
             })
             .catch((err) => {
                 setError(err.response.data.message);
+                toast.error(err.response.data.message, {
+                    position: "bottom-right",
+                  })
                 setTimeout(() => { // Set timeout for error message
                     setError('');
                 }, 10000); // 10 seconds
@@ -104,6 +113,7 @@ const CreateTask = () => {
                                     <button type='submit' className='btn btn-success mt-3'> <i class="bi bi-plus-circle" style={{ color: 'white', fontSize: '15px', marginRight: '10px' }}></i>Add Task</button>
 
                                 </form>
+                                <ToastContainer autoClose={4000} />
 
                             </div>
 

@@ -3,6 +3,8 @@ import NavBar from './../NavBar/NavBar';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../routes/RoutesIndex';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [registerSuccess, setRegisterSuccess] = useContext(UserContext);
@@ -17,7 +19,7 @@ const Login = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            axios.get('http://localhost:5000/profile', {
+            axios.get('https://to-do-react-web-app-back-end-server.onrender.com/profile', {
                 headers: {
                     Authorization: token
                 }
@@ -38,7 +40,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/login', {
+        axios.post('https://to-do-react-web-app-back-end-server.onrender.com/login', {
             username,
             password
         })
@@ -46,12 +48,16 @@ const Login = () => {
 
                 if (res.data.success === true) {
                     setRegisterSuccess('');
+                    
                     navigate('/dashboard');
                     localStorage.setItem("token", res.data.token);
                 }
             })
             .catch((err) => {
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
             })
     }
 
@@ -91,6 +97,7 @@ const Login = () => {
 
 
                     </form>
+                    <ToastContainer />
                 </div>
             </div>
         </div>

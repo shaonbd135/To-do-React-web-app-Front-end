@@ -2,13 +2,15 @@ import React, { useContext, useState } from 'react';
 import DashNav from './DashNav';
 import { ProfileContext } from '../../routes/RoutesIndex';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Profile = () => {
     const [user, setUser] = useContext(ProfileContext);
     const [editedUser, setEditedUser] = useState({});
     const [newPassword, setnewPassword] = useState({});
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
+
 
     const [showProfileEdit, setShowProfileEdit] = useState(false);
     const [showPasswordEdit, setShowPasswordEdit] = useState(false);
@@ -39,7 +41,7 @@ const Profile = () => {
 
         e.preventDefault();
         const token = localStorage.getItem('token');
-        axios.patch('http://localhost:5000/update-profile', {
+        axios.patch('https://to-do-react-web-app-back-end-server.onrender.com/update-profile', {
             id: user.id,
             currentUsername: user.username,
             newUsername: editedUser.newUsername,
@@ -55,6 +57,9 @@ const Profile = () => {
                     setUser(res.data.user);
                     setShowProfileEdit(false);
                     setSuccess(res.data.message);
+                    toast.success(res.data.message , {
+                        position: "bottom-right",
+                      });
                     setTimeout(() => {
                         setSuccess('');
                     }, 4000);
@@ -63,6 +68,9 @@ const Profile = () => {
             .catch((err) => {
 
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
                 setTimeout(() => {
                     setError('');
                 }, 4000);
@@ -74,7 +82,7 @@ const Profile = () => {
 
         e.preventDefault();
         const token = localStorage.getItem('token');
-        axios.patch('http://localhost:5000/update-password', {
+        axios.patch('https://to-do-react-web-app-back-end-server.onrender.com/update-password', {
             username: user.username,
             currentPassword: newPassword.currentPassword,
             newPassword: newPassword.newPassword
@@ -88,6 +96,9 @@ const Profile = () => {
                 if (res.data.success === true) {
                     setShowPasswordEdit(false);
                     setSuccess(res.data.message);
+                    toast.success(res.data.message , {
+                        position: "bottom-right",
+                      });
                     setTimeout(() => {
                         setSuccess('');
                     }, 4000);
@@ -95,6 +106,9 @@ const Profile = () => {
             })
             .catch((err) => {
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
                 setTimeout(() => {
                     setError('');
                 }, 4000);
@@ -133,6 +147,7 @@ const Profile = () => {
                                             <i style={{ fontSize: '50px' }} class="bi bi-person-workspace text-success"></i>
                                         </div>
 
+
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Name: {user.name}</h5>
                                             <p class="card-text">Username: {user.username}</p>
@@ -142,6 +157,7 @@ const Profile = () => {
 
                                     </div>
                                 </div>
+                                
                                 <div className='col-md-6'>
                                     {
                                         showProfileEdit && (
@@ -196,6 +212,7 @@ const Profile = () => {
                                         )
                                     }
                                 </div>
+                                <ToastContainer />
 
                             </div>
                         </div>

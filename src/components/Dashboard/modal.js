@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyModal = ({ open, onCloseModal, editData, successUpdate }) => {
 
@@ -28,7 +30,7 @@ const MyModal = ({ open, onCloseModal, editData, successUpdate }) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            axios.patch('http://localhost:5000/edit-task', {
+            axios.patch('https://to-do-react-web-app-back-end-server.onrender.com/edit-task', {
                 id: newData.id,
                 taskName: newData.taskName,
                 description: newData.taskDescription,
@@ -41,16 +43,23 @@ const MyModal = ({ open, onCloseModal, editData, successUpdate }) => {
                 .then((res) => {
                     if (res.data.success === true) {
                         successUpdate(res.data.message);
+                        toast.success(res.data.message , {
+                            position: "bottom-right",
+                          });
                         setNewData({});
                         onCloseModal();
                     }
                 })
                 .catch((err) => {
                     console.log(err.response.data.message);
+                    toast.error(err.response.data.message , {
+                        position: "bottom-right",
+                      });
                     onCloseModal();
                 });
         } catch (error) {
             console.log(error);
+            toast.error(error);
         }
     };
 

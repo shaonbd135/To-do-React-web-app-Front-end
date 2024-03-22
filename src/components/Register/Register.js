@@ -3,6 +3,8 @@ import NavBar from '../NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../routes/RoutesIndex';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = () => {
@@ -16,7 +18,7 @@ const Register = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            axios.get('http://localhost:5000/profile', {
+            axios.get('https://to-do-react-web-app-back-end-server.onrender.com/profile', {
                 headers: {
                     Authorization: token
                 }
@@ -35,7 +37,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/register', {
+        axios.post('https://to-do-react-web-app-back-end-server.onrender.com/register', {
             username,
             password,
             name
@@ -49,6 +51,9 @@ const Register = () => {
             .catch((err) => {
 
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
             })
     }
     return (
@@ -83,6 +88,7 @@ const Register = () => {
                         <div className='text-center mt-3'>
                             <p>Already have an account?</p> <Link style={{ color: 'green', textDecoration: 'none' }} to="/login"><h5 >Login</h5></Link>
                         </div>
+                        <ToastContainer />
                     </form>
                 </div>
             </div>

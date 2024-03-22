@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './MyTask.css';
 import MyModal from './modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const MyTask = () => {
@@ -26,7 +28,7 @@ const MyTask = () => {
             return;
         }
 
-        axios.get('http://localhost:5000/tasks', {
+        axios.get('https://to-do-react-web-app-back-end-server.onrender.com/tasks', {
             headers: {
                 Authorization: token
             }
@@ -58,7 +60,7 @@ const MyTask = () => {
     // Delete Task........
     const handleDelete = (taskId) => {
         const token = localStorage.getItem('token');
-        axios.delete(`http://localhost:5000/delete-task/${taskId}`, {
+        axios.delete(`https://to-do-react-web-app-back-end-server.onrender.com/delete-task/${taskId}`, {
             headers: {
                 Authorization: token
             }
@@ -66,6 +68,9 @@ const MyTask = () => {
             .then((res) => {
                 if (res.data.success === true) {
                     setDeleteSuccess(res.data.message);
+                    toast.success(res.data.message, {
+                        position: "bottom-right",
+                      });
                     setTimeout(() => {
                         setDeleteSuccess('');
                     }, 7000);
@@ -73,6 +78,9 @@ const MyTask = () => {
             })
             .catch((err) => {
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
                 setTimeout(() => {
                     setError('');
                 }, 7000);
@@ -82,7 +90,7 @@ const MyTask = () => {
     // Update Task Status For Completed...
     const handleComplete = (taskId) => {
         const token = localStorage.getItem('token');
-        axios.patch('http://localhost:5000/update-task', {
+        axios.patch('https://to-do-react-web-app-back-end-server.onrender.com/update-task', {
             id: taskId,
             isDone: true
         }, {
@@ -93,6 +101,9 @@ const MyTask = () => {
             .then((res) => {
                 if (res.data.success === true) {
                     setUpdateSuccess(res.data.message);
+                    toast.success(res.data.message , {
+                        position: "bottom-right",
+                      });
                     setTimeout(() => {
                         setUpdateSuccess('');
                     }, 5000);
@@ -100,6 +111,9 @@ const MyTask = () => {
             })
             .catch((err) => {
                 setError(err.response.data.message);
+                toast.error(err.response.data.message , {
+                    position: "bottom-right",
+                  });
                 setTimeout(() => {
                     setError('');
                 }, 5000);
@@ -200,10 +214,13 @@ const MyTask = () => {
                             </tbody>
                         </table>
 
+                        <ToastContainer autoClose={4000} />
+
                         {/* //modal for edit task (Popup) */}
                         <div>
                             <MyModal open={open} onCloseModal={onCloseModal} editData={editData} successUpdate={successUpdate} />
                         </div>
+
 
                         {/* If no tasks found for the user (Due Task) */}
                         <div>
